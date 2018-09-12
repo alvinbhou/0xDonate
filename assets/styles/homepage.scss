@@ -1,4 +1,4 @@
-.HompageCard{
+.HompagemMainCard{
 
     .ant-card-head {
         padding: 0;
@@ -6,5 +6,15 @@
 
     .ant-card-head-title{
         padding: 0;
+    }
+
+}
+
+.HomepageSubCard{
+
+    .ant-card-body{
+        * {
+            font-size: 16px;
+        }
     }
 }

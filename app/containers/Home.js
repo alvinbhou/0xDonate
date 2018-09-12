@@ -2,11 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Input, Row, Col, Card, Button, Avatar, Carousel, Icon, Tooltip, Divider, Timeline, message } from 'antd';
 import styled from 'styled-components';
-import Header from 'components/Header';
+import * as path from 'path';
 import 'styles/homepage.scss';
-import * as path from 'path'
-
-const { Meta } = Card;
+import Header from 'components/Header';
+import Footer from 'components/Footer';
 
 const IconButton = styled(Button)`
   margin: 0 -11px;
@@ -53,12 +52,7 @@ class Home extends React.Component {
       donatelink: '',
       notilink: ''
     };
-  }
-
-  componentDidMount () {
-    setTimeout( () => {this.setState({loading:false})}, 1000)
-    console.log(GIT_HOMEPAGE)
-  }
+  } 
 
   updateInputValue = (event) => {
     let donatelink =  'donate?addr=' + event.target.value;
@@ -79,6 +73,8 @@ class Home extends React.Component {
   render() {
 
     return (
+      <div>  
+      <Header />
       <Row
         style={{
           marginBottom: '80px'
@@ -88,9 +84,8 @@ class Home extends React.Component {
         align="middle"
       >
       
-      <Header />
       <Col xs={{ span: 22 }} md = {{ span: 16}} lg={{ span: 8 }}>
-        <Card className = "HompageCard" style = {{margin: '10% 0%'}} title= { 
+        <Card className = "HompagemMainCard" style = {{margin: '10% 0%'}} title= { 
             <div>
               <StyledCarousel autoplay>
               <div> <CarouselText><IconImage src="https://i.imgur.com/NGldgtT.png" /> ETH donations for streamers</CarouselText></div>
@@ -140,7 +135,7 @@ class Home extends React.Component {
             <span style={{color: "#000", fontSize: "16px", backgroundColor: "#FFF", padding: "5px 15px", borderRadius: "10px"}}> 0 fee, 0 setup, only 0x address</span>
           </div>
         </Divider>
-        <Card style = {{margin: '10% 0%'}}  title= { "How it works" }>
+        <Card className = "HomepageSubCard" style = {{margin: '10% 0%'}}  title= { "How it works" }>
           <Timeline>
             <Timeline.Item color="green">
               <div>Streamer enters wallet address and generates two unique links </div>
@@ -152,7 +147,7 @@ class Home extends React.Component {
             </Timeline.Item>
             <Timeline.Item color="red">
               <div>Viewers donate to the streamer through the <span className="red">Donate page</span></div>
-              <div>(<Avatar size={20} src="https://i.imgur.com/VDMWCHx.png"/> Metamask is required)</div>
+              <div>(<a href="https://metamask.io" target="_blank"><Avatar size={20} src="https://i.imgur.com/VDMWCHx.png"/></a> Metamask is required)</div>
               
             </Timeline.Item>
             <Timeline.Item>
@@ -162,6 +157,8 @@ class Home extends React.Component {
         </Card>
       </Col>
     </Row>
+    <Footer/>
+    </div>  
     );
   }
 }

@@ -1,15 +1,15 @@
 import React from 'react';
-import { Layout, Icon, Col } from 'antd';
+import { Layout, Icon, Row } from 'antd';
 import { Link } from 'react-router-dom';
 const { Header } = Layout;
 
 export default () => (
-    <Col span={24}>
+    <Row span={24}>
         <Header
             style={{
             background: '#555',
             color: '#FFF',
-            fontSize: '2.6em',
+            fontSize: '2em',
             marginTop: '2%'
             }}
             type="flex"
@@ -18,5 +18,5 @@ export default () => (
         >
         <Icon type="coffee" theme="outlined" /> <Link to = '/' style={{color: '#FFF'}}>0x Donate</Link>
         </Header>
-    </Col>
+    </Row>
 )

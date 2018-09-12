@@ -1,9 +1,10 @@
-import React from 'react'
-import { Input, Row, Col, Form, Icon, Card, Button, Alert, Avatar } from 'antd'
-import { web3, web3metamask } from 'utils/web3'
-import { findGetParameter } from 'utils/util'
-import DonateContract from 'contracts/contract'
+import React from 'react';
+import { Input, Row, Col, Form, Icon, Card, Button, Alert, Avatar } from 'antd';
+import { web3, web3metamask } from 'utils/web3';
+import { findGetParameter } from 'utils/util';
+import { DonateContractMetamask } from 'contracts/contract';
 import Header from 'components/Header';
+import Footer from 'components/Footer';
 
 const FormItem = Form.Item
 const { TextArea } = Input
@@ -38,7 +39,7 @@ class DonateForm extends React.Component {
           value: web3.toWei(values.damount, 'ether')
         }
         console.log(donateTransactionOptions)
-        DonateContract.donate(values.daddr, values.ddonor, values.dmssg, donateTransactionOptions,
+        DonateContractMetamask.donate(values.daddr, values.ddonor, values.dmssg, donateTransactionOptions,
           function (error, result) {
             if (!error) {
               console.log(result)
@@ -60,6 +61,8 @@ class DonateForm extends React.Component {
   render () {
     const { getFieldDecorator } = this.props.form
     return (
+      <div>
+      <Header/>
       <Row
         style={{
           marginBottom: '80px'
@@ -68,7 +71,6 @@ class DonateForm extends React.Component {
         justify="space-around"
         align="middle"
       >
-        <Header />
         <Col style={{
           width: '45vh'
         }}>
@@ -131,8 +133,10 @@ class DonateForm extends React.Component {
             /> </div> : null }
           </Card>
         </Col>
-
-      </Row>)
+      </Row>
+      <Footer/>
+      </div>
+    )
   }
 }
 
