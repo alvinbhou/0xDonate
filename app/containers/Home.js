@@ -76,8 +76,11 @@ class Home extends React.Component {
       <div>  
       <Header />
       <Row
+        className = 'main-bg-color'
         style={{
-          marginBottom: '80px'
+          paddingBottom: '80px',
+          minHeight: '90vh',
+          marginTop: '-1px'
         }}
         type="flex"
         justify="space-around"
@@ -143,12 +146,14 @@ class Home extends React.Component {
               <div> [<span className="blue">Notification</span>] The donations' notifications will show on this page </div>
             </Timeline.Item>
             <Timeline.Item color="green">
+              <div>Streamer shares the <span className="red">Donate link</span> to its viewers</div>
+            </Timeline.Item>
+            <Timeline.Item color="green">
               <div>Streamer setups browser source for streaming with the <span className="blue">Notification link</span></div>
             </Timeline.Item>
             <Timeline.Item color="red">
               <div>Viewers donate to the streamer through the <span className="red">Donate page</span></div>
               <div>(<a href="https://metamask.io" target="_blank"><Avatar size={20} src="https://i.imgur.com/VDMWCHx.png"/></a> Metamask is required)</div>
-              
             </Timeline.Item>
             <Timeline.Item>
               <div>The donate messages will show on the <span className="blue">Notification page</span>, and displays on the stream</div>

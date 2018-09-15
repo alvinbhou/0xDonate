@@ -1,12 +1,13 @@
 import React from 'react';
-import { Input, Row, Col, Card, Button } from 'antd';
+import { Row } from 'antd';
 import styled from 'styled-components';
 import { web3 } from 'utils/web3';
 import { findGetParameter } from 'utils/util';
 import { DonateContract } from 'contracts/contract';
 
 const PromptText = styled.div`
-	color: #FFF;
+	color: #000;
+	margin-top: 50%;
 	font-size: 3em;
 	text-align: center;
 	-webkit-transition: opacity 5s ease-in-out;
@@ -29,6 +30,14 @@ const DonateMessageContainer = styled.div`
 const DonateMessageTitle = styled.div`
 	font-size: 4em;
 	margin: 0 10px;
+	color: #fff;
+	// text-shadow:
+	// 1px 1px 0 #000,
+	// -1px -1px 0 #000,  
+ 	// 1px -1px 0 #000,
+ 	// -1px 1px 0 #000,
+	// 1px 1px 0 #000;
+	text-shadow: 2px 2px #000;
 `;
 
 class NotiPage extends React.Component {
@@ -41,7 +50,7 @@ class NotiPage extends React.Component {
 				donorName: '',
 				recvAddress: '',
 				donateMssg: '',
-				donateValue: 0
+				donateValue: 0.0
 			}
     }
 
@@ -59,7 +68,7 @@ class NotiPage extends React.Component {
 					donorName: result.args.donor,
 					recvAddress: result.args.raddr,
 					donateMssg: result.args.message,
-					donateValue: parseFloat(web3.fromWei(result.args.value.toNumber(), "ether" )).toFixed(7)
+					donateValue: +parseFloat(web3.fromWei(result.args.value.toNumber(), "ether" )).toFixed(7)
 				})
 				setTimeout( () => { that.setState({donationAlert: false })}, 15000);
 			});
@@ -70,24 +79,26 @@ class NotiPage extends React.Component {
 			<Row
 				style={{
 					height: '100vh',
-					transition: 'background-color 5s linear'
+					transition: 'background-color 5s linear',
 				}}
 				type="flex"
 				justify="space-around"
-				align="middle"
-				className = { this.state.isBlank ? 'blankBackground' : null}>
+				align="top"
+				>
 
-				{!this.state.donationAlert ? <PromptText style={ this.state.isBlank ? {opacity: 0} : null}> The donate messages will show up on this page</PromptText> : null}
+				{!this.state.donationAlert ? <PromptText style={ this.state.isBlank ? {opacity: 0} : null}>
+					The donate messages will show up on this page
+				</PromptText> : null}
 				{ this.state.donationAlert ? 
-				<div>
+				<div style={{marginTop:'3%'}}>
 					<DonateMessageContainer>
-						<DonateMessageTitle className="blue"> {this.state.donorName}  </DonateMessageTitle> 
+						<DonateMessageTitle style={{color: '#81D4FA'}}> {this.state.donorName} </DonateMessageTitle> 
 					</DonateMessageContainer>
 					<DonateMessageContainer>
 						<DonateMessageTitle style={{fontSize: '3em'}}> <IconImage src="https://i.imgur.com/NGldgtT.png" /> {this.state.donateValue}</DonateMessageTitle>
 					</DonateMessageContainer>
 					<DonateMessageContainer>
-						<DonateMessageTitle> {this.state.donateMssg}  </DonateMessageTitle>
+						<DonateMessageTitle style={{fontSize: '3.2em', textAlign: 'center'}}> {this.state.donateMssg} </DonateMessageTitle>
 					</DonateMessageContainer>
 				</div>
 				: null	}

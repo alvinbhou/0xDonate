@@ -44,7 +44,10 @@ module.exports = {
             VERSION: JSON.stringify(packageJSON.version),
             GIT_HOMEPAGE: JSON.stringify(packageJSON.homepage),
             WEB3_PROVIDER_URL: JSON.stringify('https://api.myetherwallet.com/rop'),
-            CONTRACT_ADDRESS: JSON.stringify('0x45d8a9f9d2495250041d9715ad54289473c458d6')
+            NETWORK_VERSION: JSON.stringify('3'),
+            NETWORK_NAME: JSON.stringify('Ropsten Testnet'),
+            CONTRACT_ADDRESS: JSON.stringify('0x45d8a9f9d2495250041d9715ad54289473c458d6'),
+
         }),
 
         new HtmlWebpackPlugin({

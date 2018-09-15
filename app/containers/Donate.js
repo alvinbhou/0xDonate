@@ -6,8 +6,8 @@ import { DonateContractMetamask } from 'contracts/contract';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
 
-const FormItem = Form.Item
-const { TextArea } = Input
+const FormItem = Form.Item;
+const { TextArea } = Input;
 
 class DonateForm extends React.Component {
   constructor (props) {
@@ -30,7 +30,12 @@ class DonateForm extends React.Component {
           this.state.showMetamaskError = false
         }
         /* check metamask login status */
-        this.state.showNetworkWarning = (web3metamask && web3metamask.version.network !== '3')
+        if (web3metamask && web3metamask.version.network !== NETWORK_VERSION) {
+          this.state.showNetworkWarning = true
+          return
+        } else {
+          this.state.showNetworkWarning = false
+        }
         console.log('Received values of form: ', values)
         let donateTransactionOptions = {
           from: web3metamask.eth.accounts[0],
@@ -52,7 +57,6 @@ class DonateForm extends React.Component {
   }
 
   componentDidMount () {
-    console.log(findGetParameter('addr'));
     this.props.form.setFieldsValue({
       daddr: findGetParameter('addr')
     })
@@ -64,8 +68,11 @@ class DonateForm extends React.Component {
       <div>
       <Header/>
       <Row
+        className = 'main-bg-color'
         style={{
-          marginBottom: '80px'
+          paddingBottom: '80px',
+          minHeight: '90vh',
+          marginTop: '-1px'
         }}
         type="flex"
         justify="space-around"
@@ -91,14 +98,14 @@ class DonateForm extends React.Component {
               </FormItem>
               <FormItem>
                 {getFieldDecorator('ddonor', {
-                  rules: [{ required: true, message: 'Please input your donate username!' }]
+                  rules: [{ required: true, message: 'Please input your donate username' }]
                 })(
                   <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Donor Username" />
                 )}
               </FormItem>
               <FormItem>
                 {getFieldDecorator('damount', {
-                  rules: [{ required: true, message: 'Please input the amount of ETH!' }]
+                  rules: [{ required: true, message: 'Please input the amount of ETH' }]
                 })(
                   <Input type='number' prefix={<Icon type="red-envelope" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="0.00 ETH" />
                 )}
@@ -107,7 +114,7 @@ class DonateForm extends React.Component {
                 {getFieldDecorator('dmssg', {
                   rules: [{ required: true, message: 'Please say something :o' }]
                 })(
-                  <TextArea prefix={<Icon type="red-envelope" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Donate message..." />
+                  <TextArea maxLength="100" prefix={<Icon type="red-envelope" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Donate messages (100 characters)" />
                 )}
               </FormItem>
               <FormItem>
@@ -121,13 +128,13 @@ class DonateForm extends React.Component {
               justify="space-around"
             > <Alert
                 message="Metamask not login"
-                description="Please ensure you have installed Metamask and login"
+                description={ <div>Please ensure you have installed <a href="https://metamask.io">Metamask</a> and login </div>}
                 type="error"
                 showIcon
               /></div> : null }
             { this.state.showNetworkWarning ? <div> <Alert
               message="Network warning"
-              description="Please switch to Ropsten Test Net"
+              description= { <div>Please switch to {NETWORK_NAME} </div>}
               type="warning"
               showIcon
             /> </div> : null }

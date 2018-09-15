@@ -6,11 +6,11 @@ const { Header } = Layout;
 export default () => (
     <Row span={24}>
         <Header
+            className='main-bg-color'
             style={{
-            background: '#555',
             color: '#FFF',
             fontSize: '2em',
-            marginTop: '2%'
+            paddingTop: '2%'
             }}
             type="flex"
             justify="space-around"

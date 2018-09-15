@@ -28,5 +28,8 @@ Build the current application
 $ npm run build
 ```
 
+## Contributors
+[Tocknicsu](https://github.com/Tocknicsu)
+
 ## License
 [MIT License](LICENSE)
