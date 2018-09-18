@@ -9,8 +9,10 @@ log/
 dist/
 node_modules/
 bower_components/
+tmp/
 
 
 ## Files
 result.xml
 npm-debug.log
+*.mp4

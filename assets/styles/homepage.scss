@@ -18,3 +18,27 @@
         }
     }
 }
+
+.demoModal{
+   
+    min-width: 66.6% !important;
+    
+    .ant-modal-title{
+        text-align: center;
+    }
+
+    .ant-modal-body{
+        padding: 4px;
+    }
+
+}
+
+.linkUrlSpan{
+    color: rgba(0, 0, 0, 0.8);
+
+    &:hover{
+        text-decoration: underline;
+    }
+}
+
+

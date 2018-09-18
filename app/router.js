@@ -4,7 +4,8 @@ import styled from 'styled-components';
 import Home from 'containers/Home';
 import Donate from 'containers/Donate';
 import Notifications from 'containers/Notification';
-import NotFound from 'containers/NotFound'
+import History from 'containers/History'
+import NotFound from 'containers/NotFound';
 
 class RootRouter extends React.Component {
   render () {
@@ -14,6 +15,7 @@ class RootRouter extends React.Component {
           <Route exact path='/' component={Home} />
           <Route path='/donate' component={Donate} />
           <Route path='/noti' component={Notifications} />
+          <Route path='/history' component={History} />
           <Route component={NotFound} />
         </Switch>
       </Router>

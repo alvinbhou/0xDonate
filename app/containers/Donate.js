@@ -39,8 +39,8 @@ class DonateForm extends React.Component {
         console.log('Received values of form: ', values)
         let donateTransactionOptions = {
           from: web3metamask.eth.accounts[0],
-          gas: 4000000,
-          gasPrice: web3.toWei(20, 'gwei'),
+          gas: 800000,
+          gasPrice: web3.toWei(30, 'gwei'),
           value: web3.toWei(values.damount, 'ether')
         }
         console.log(donateTransactionOptions)
@@ -100,7 +100,7 @@ class DonateForm extends React.Component {
                 {getFieldDecorator('ddonor', {
                   rules: [{ required: true, message: 'Please input your donate username' }]
                 })(
-                  <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Donor Username" />
+                  <Input maxLength="30" prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Donor Username" />
                 )}
               </FormItem>
               <FormItem>

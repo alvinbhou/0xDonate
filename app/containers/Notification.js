@@ -2,12 +2,13 @@ import React from 'react';
 import { Row } from 'antd';
 import styled from 'styled-components';
 import { web3 } from 'utils/web3';
-import { findGetParameter } from 'utils/util';
 import { DonateContract } from 'contracts/contract';
+import { findGetParameter } from 'utils/util';
+
 
 const PromptText = styled.div`
 	color: #000;
-	margin-top: 50%;
+	margin-top: 20%;
 	font-size: 3em;
 	text-align: center;
 	-webkit-transition: opacity 5s ease-in-out;
@@ -19,6 +20,10 @@ const PromptText = styled.div`
 const IconImage = styled.img`
 	display: inline-block !important;
 	height: 80px;
+`;
+
+const DonateMessageWrapper = styled.div`
+	animation: popup 1s;
 `;
 
 const DonateMessageContainer = styled.div`
@@ -56,6 +61,7 @@ class NotiPage extends React.Component {
 
     componentDidMount () {
 			setTimeout( () => { this.setState({isBlank: true })}, 3000);
+			// setTimeout( () => { this.setState({donationAlert: true })}, 3000);
 			let donateEvent = DonateContract.NewDonation();
 			let that = this;
 			donateEvent.watch(function (error, result) {
@@ -90,17 +96,17 @@ class NotiPage extends React.Component {
 					The donate messages will show up on this page
 				</PromptText> : null}
 				{ this.state.donationAlert ? 
-				<div style={{marginTop:'3%'}}>
+				<DonateMessageWrapper style={{marginTop:'3%'}}>
 					<DonateMessageContainer>
-						<DonateMessageTitle style={{color: '#81D4FA'}}> {this.state.donorName} </DonateMessageTitle> 
+						<DonateMessageTitle style={{color: '#81D4FA'}}> {`${this.state.donorName}`} </DonateMessageTitle> 
 					</DonateMessageContainer>
 					<DonateMessageContainer>
-						<DonateMessageTitle style={{fontSize: '3em'}}> <IconImage src="https://i.imgur.com/NGldgtT.png" /> {this.state.donateValue}</DonateMessageTitle>
+						<DonateMessageTitle style={{fontSize: '3em'}}> <IconImage src="https://i.imgur.com/NGldgtT.png" /> {`${this.state.donateValue}` }</DonateMessageTitle>
 					</DonateMessageContainer>
 					<DonateMessageContainer>
-						<DonateMessageTitle style={{fontSize: '3.2em', textAlign: 'center'}}> {this.state.donateMssg} </DonateMessageTitle>
+						<DonateMessageTitle style={{fontSize: '3.2em', textAlign: 'center'}}> {`${this.state.donateMssg}`} </DonateMessageTitle>
 					</DonateMessageContainer>
-				</div>
+				</DonateMessageWrapper>
 				: null	}
 			</Row>
 		)

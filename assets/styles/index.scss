@@ -1,7 +1,8 @@
 $font-stack: 'Product Sans';
+$main-bg-color: #555555;
 $red: #D32F2F;
 $blue: #1976D2;
-$main-bg-color: #555555;
+$yellow: #F57F17;
 
 *, *:before, *:after {
     box-sizing : border-box;
@@ -26,3 +27,32 @@ $main-bg-color: #555555;
 .blue{
     color: $blue;
 }
+
+.yellow{
+	color: $yellow;
+}
+
+@keyframes popup {
+    0%{
+      transform: scale(1);
+    }
+    50%{
+      transform: scale(1.4);
+    }
+    60%{
+      transform: scale(1.1);
+    }
+    70%{
+      transform: scale(1.2);
+    }
+    80%{
+      transform: scale(1);
+    }
+    90%{
+      transform: scale(1.1);
+    }
+    100%{
+      transform: scale(1);
+    }
+  }
+

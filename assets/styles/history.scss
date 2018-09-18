@@ -1,0 +1,26 @@
+$gold: gold;
+$silver:  #D3D3D3;
+$bronze: #cd7f32;
+
+.donateRecords {
+    .donateRecord{
+        &:nth-child(1) {
+            .donateRecordAvatar{
+                background-color: $gold;
+            }
+        }
+        &:nth-child(2) {
+            .donateRecordAvatar{
+                background-color: $silver;
+            }
+        }
+        &:nth-child(3) {
+            .donateRecordAvatar{
+                background-color: $bronze;
+            }
+        }
+    }
+
+    padding: 10px;
+    
+}

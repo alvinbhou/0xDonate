@@ -43,10 +43,13 @@ module.exports = {
             IS_DEV: IS_DEV,
             VERSION: JSON.stringify(packageJSON.version),
             GIT_HOMEPAGE: JSON.stringify(packageJSON.homepage),
+            MEDIUM_URL: JSON.stringify('https://medium.com/@alvinbhou'),
             WEB3_PROVIDER_URL: JSON.stringify('https://api.myetherwallet.com/rop'),
             NETWORK_VERSION: JSON.stringify('3'),
             NETWORK_NAME: JSON.stringify('Ropsten Testnet'),
-            CONTRACT_ADDRESS: JSON.stringify('0x45d8a9f9d2495250041d9715ad54289473c458d6'),
+            CONTRACT_ADDRESS: JSON.stringify('0x0f7e8babc5346fc6cdb229ff932a1bef0cad690b'),
+            ETHERSCAN_URL: JSON.stringify('https://ropsten.etherscan.io/address/'),
+
 
         }),
 
