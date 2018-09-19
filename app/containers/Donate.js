@@ -22,36 +22,40 @@ class DonateForm extends React.Component {
     e.preventDefault()
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        /* check metamask login status */
-        if (!web3metamask || web3metamask.eth.accounts.length === 0) {
-          this.state.showMetamaskError = true
-          return
-        } else {
-          this.state.showMetamaskError = false
-        }
-        /* check metamask login status */
-        if (web3metamask && web3metamask.version.network !== NETWORK_VERSION) {
-          this.state.showNetworkWarning = true
-          return
-        } else {
-          this.state.showNetworkWarning = false
-        }
-        console.log('Received values of form: ', values)
-        let donateTransactionOptions = {
-          from: web3metamask.eth.accounts[0],
-          gas: 800000,
-          gasPrice: web3.toWei(30, 'gwei'),
-          value: web3.toWei(values.damount, 'ether')
-        }
-        console.log(donateTransactionOptions)
-        DonateContractMetamask.donate(values.daddr, values.ddonor, values.dmssg, donateTransactionOptions,
-          function (error, result) {
-            if (!error) {
-              console.log(result)
-            } else {
-              console.log(error)
+        if (web3metamask){
+          web3metamask.eth.net.getNetworkType()
+          .then(netId =>{
+            this.state.showNetworkWarning = !(NETWORK_VERSION == netId);
+          });
+
+          /* check metamask login status */
+          web3metamask.eth.getAccounts().then(e => {
+            if(e.length == 0){
+              this.state.showMetamaskError = true;
             }
-          })
+            else{
+              this.state.showMetamaskError = false;
+              console.log('Received values of form: ', values);
+              let donateTransactionOptions = {
+                from: e[0],
+                gas: 800000,
+                gasPrice: web3.utils.toWei("30", 'gwei'),
+                value: web3.utils.toWei(String(values.damount), 'ether')
+              }
+              console.log(donateTransactionOptions);
+              DonateContractMetamask.methods.donate(values.daddr, values.ddonor, values.dmssg).send(donateTransactionOptions,function(error, result){
+                if (!error) {
+                  console.log('r', result)
+                } else {
+                  console.log('e', error)
+                }
+              });
+            }
+            console.log(e)
+          });
+        } else {
+          this.state.showMetamaskError = true;
+        }
       }
     })
   }
@@ -107,7 +111,7 @@ class DonateForm extends React.Component {
                 {getFieldDecorator('damount', {
                   rules: [{ required: true, message: 'Please input the amount of ETH' }]
                 })(
-                  <Input type='number' prefix={<Icon type="red-envelope" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="0.00 ETH" />
+                  <Input type="text" pattern="[0-9.]*" prefix={<Icon type="red-envelope" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="0.00 ETH" />
                 )}
               </FormItem>
               <FormItem>

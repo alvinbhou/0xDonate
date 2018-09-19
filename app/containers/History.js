@@ -26,18 +26,17 @@ class History extends React.Component {
   componentDidMount () {
 		let addr = findGetParameter('addr');
 		let that = this;
-		if(web3.isAddress(addr)){
-			DonateContract.getDonationsCount(addr, function (error, result) {
+		if(web3.utils.isAddress(addr)){
+			DonateContract.methods.getDonationsCount(addr).call( function (error, dcount) {
 				if(!error){
-					let dcount = result.toNumber();
 					if(dcount == 0){
 						that.setState({loading:false});
 						return;
 					}
 					let donateList = [];
 					for(let i = 0; i < dcount; ++i){
-						DonateContract.getDonation(addr, i, function(error, result){
-							let value = web3.fromWei(result[0].toNumber(), "ether" );
+						DonateContract.methods.getDonation(addr, i).call(function(error, result){
+							let value = web3.utils.fromWei(result[0], "ether" );
 							let donor = result[1];
 							donateList.push({
 								donor: donor,

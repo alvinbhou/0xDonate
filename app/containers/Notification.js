@@ -61,23 +61,21 @@ class NotiPage extends React.Component {
 
     componentDidMount () {
 			setTimeout( () => { this.setState({isBlank: true })}, 3000);
-			// setTimeout( () => { this.setState({donationAlert: true })}, 3000);
-			let donateEvent = DonateContract.NewDonation();
 			let that = this;
-			donateEvent.watch(function (error, result) {
-				console.log(result);			
+			DonateContract.events.NewDonation().on('data', function(result){
+				console.log(result);
 				let addr = findGetParameter('addr');
-				if(addr != result.args.raddr) return;
+				if(addr.toLowerCase() != result.returnValues.raddr.toLowerCase()) return;
 				that.setState({
 					donationAlert: true,
-					donorAddress: result.args.daddr,
-					donorName: result.args.donor,
-					recvAddress: result.args.raddr,
-					donateMssg: result.args.message,
-					donateValue: +parseFloat(web3.fromWei(result.args.value.toNumber(), "ether" )).toFixed(7)
+					donorAddress: result.returnValues.daddr,
+					donorName: result.returnValues.donor,
+					recvAddress: result.returnValues.raddr,
+					donateMssg: result.returnValues.message,
+					donateValue: +parseFloat(web3.utils.fromWei(result.returnValues.value, "ether" )).toFixed(7)
 				})
 				setTimeout( () => { that.setState({donationAlert: false })}, 15000);
-			});
+			})
     }
 
     render() {
@@ -113,6 +111,5 @@ class NotiPage extends React.Component {
     }
 
 }
-
 
 export default NotiPage

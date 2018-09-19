@@ -22,7 +22,7 @@
     "react-router-dom": "^4.3.1",
     "styled-components": "^3.4.1",
     "antd": "^3.8.0",
-    "web3": "^0.20.7"
+    "web3": "v1.0.0-beta.33"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
