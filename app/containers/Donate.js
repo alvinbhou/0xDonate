@@ -1,5 +1,5 @@
 import React from 'react';
-import { Input, Row, Col, Form, Icon, Card, Button, Alert, Avatar } from 'antd';
+import { Input, Row, Col, Form, Icon, Card, Button, Alert, Avatar, message} from 'antd';
 import { web3, web3metamask } from 'utils/web3';
 import { findGetParameter } from 'utils/util';
 import { DonateContractMetamask } from 'contracts/contract';
@@ -19,45 +19,52 @@ class DonateForm extends React.Component {
   }
 
   handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
+    let that = this;
     this.props.form.validateFields((err, values) => {
-      if (!err) {
-        if (web3metamask){
-          web3metamask.eth.net.getNetworkType()
-          .then(netId =>{
-            this.state.showNetworkWarning = !(NETWORK_VERSION == netId);
-          });
-
-          /* check metamask login status */
-          web3metamask.eth.getAccounts().then(e => {
-            if(e.length == 0){
-              this.state.showMetamaskError = true;
-            }
-            else{
-              this.state.showMetamaskError = false;
-              console.log('Received values of form: ', values);
-              let donateTransactionOptions = {
-                from: e[0],
-                gas: 800000,
-                gasPrice: web3.utils.toWei("30", 'gwei'),
-                value: web3.utils.toWei(String(values.damount), 'ether')
-              }
-              console.log(donateTransactionOptions);
-              DonateContractMetamask.methods.donate(values.daddr, values.ddonor, values.dmssg).send(donateTransactionOptions,function(error, result){
-                if (!error) {
-                  console.log('r', result)
-                } else {
-                  console.log('e', error)
-                }
-              });
-            }
-            console.log(e)
-          });
-        } else {
-          this.state.showMetamaskError = true;
-        }
+      if (!err && web3metamask) {
+        /* check metamask login status */
+        web3metamask.eth.getAccounts().then(e => {
+          console.log(e);
+          if(e.length == 0){
+            that.setState({showMetamaskError: true});
+          }
+          else{
+            that.setState({showMetamaskError: false});
+            that.donateCall(values, e[0]);
+          }
+        });
+      } else {
+        that.setState({showMetamaskError: true});
       }
     })
+  }
+
+  donateCall = (values, addr) => {
+    let that = this;
+    web3metamask.eth.net.getNetworkType()
+    .then(netId =>{
+      let isCorrectNetwork = NETWORK_VERSION == netId;
+      that.setState({showNetworkWarning : !(isCorrectNetwork)});
+      if(isCorrectNetwork){
+        let donateTransactionOptions = {
+          from: addr,
+          gas: 800000,
+          gasPrice: web3.utils.toWei("30", 'gwei'),
+          value: web3.utils.toWei(String(values.damount), 'ether')
+        }
+        console.log(donateTransactionOptions);
+        DonateContractMetamask.methods.donate(values.daddr, values.ddonor, values.dmssg).send(donateTransactionOptions,function(error, result){
+          if (!error) {
+            message.success(<span> View on <a href={`${ETHERSCAN_URL}/`+`tx/${result}`}>Etherscan</a></span>, 8);
+            console.log('r', result)
+          } else {
+            console.log('e', error)
+          }
+        });
+      }
+    });
+    
   }
 
   componentDidMount () {

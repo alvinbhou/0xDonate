@@ -17,9 +17,6 @@ const packageJSON = require("./package.json");
  */
 module.exports = {
     entry: {
-        vendor: [
-            'lodash'
-        ],
         bundle: path.join(dirApp, 'index')
     },
     resolve: {
@@ -48,9 +45,7 @@ module.exports = {
             NETWORK_VERSION: JSON.stringify('ropsten'),
             NETWORK_NAME: JSON.stringify('Ropsten Testnet'),
             CONTRACT_ADDRESS: JSON.stringify('0x0f7e8babc5346fc6cdb229ff932a1bef0cad690b'),
-            ETHERSCAN_URL: JSON.stringify('https://ropsten.etherscan.io/address/'),
-
-
+            ETHERSCAN_URL: JSON.stringify('https://ropsten.etherscan.io'),
         }),
 
         new HtmlWebpackPlugin({

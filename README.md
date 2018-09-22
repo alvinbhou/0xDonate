@@ -1,32 +1,31 @@
-0x Donate
-===========
+# <img src="https://0xdonate.io/assets/images/favicon.png" height="50px"/>0x Donate
 
-## Requirements
-You only need <b>node.js</b> pre-installed and you’re good to go. 
+## [0xDonate.io](https://0xdonate.io)
+> An Ethereum donate service for streamers, based on smart contract.
+
+## Demo Video
+[![0xDonate demo vid](https://img.youtube.com/vi/uah9darbB4Y/0.jpg)](https://youtu.be/uah9darbB4Y)
+
+## Features
+* 0 fee
+* 0 setup, no API keys required
+* Enter your address and get started!
 
 ## Setup
-Clone  current directory
+### Development
 ```sh
 $ git clone https://github.com/CryoliteZ/0xDonate.git
-```
-Install dependencies
-```sh
 $ npm install
-```
-
-## Development
-Run the local webpack-dev-server with livereload and autocompile on [http://localhost:8080/](http://localhost:8080/)
-```sh
 $ npm run dev
 ```
 
-It supports hot reloading when you make a change.
-
-## Deployment
-Build the current application
+### Deployment
 ```sh
 $ npm run build
 ```
+
+## Articles
+<img src="https://i.imgur.com/UOnaAGy.png" height="18px"/> [0xDonate — An Ethereum donate service for streamers](https://medium.com/@alvinbhou/0xdonate-an-ethereum-donate-service-for-streamers-a370f2b8f488)
 
 ## Contributors
 [Tocknicsu](https://github.com/Tocknicsu)

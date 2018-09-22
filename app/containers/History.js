@@ -1,6 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Input, Row, Col, Form, Icon, Card, Skeleton, Table, Divider, Tag,Switch, List, Avatar } from 'antd';
+import {  Row, Col, List, Avatar } from 'antd';
 import { web3 } from 'utils/web3';
 import { DonateContract } from 'contracts/contract';
 import styled from 'styled-components';

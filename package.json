@@ -14,7 +14,6 @@
     "url": "https://github.com/CryoliteZ/0xDonate.git"
   },
   "dependencies": {
-    "lodash": "4.17.10",
     "prop-types": "^15.6.2",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",

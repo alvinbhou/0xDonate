@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Input, Row, Col, Card, Button, Avatar, Carousel, Icon, Tooltip, Divider, Timeline, Modal, Popover, Tag, message } from 'antd';
+import { Input, Row, Col, Card, Button, Avatar, Carousel, Icon, Tooltip, Divider, Timeline, Modal, Tag, message } from 'antd';
 import styled from 'styled-components';
 import Cookies from 'universal-cookie';
 import * as path from 'path';
@@ -248,7 +248,7 @@ class Home extends React.Component {
           {/* <Divider/> */}
           <div style={{display: 'flex'}}>
             <ReferenceCols>
-              <a href={`${ETHERSCAN_URL}${CONTRACT_ADDRESS}`} target='_blank'>
+              <a href={`${ETHERSCAN_URL}/address/${CONTRACT_ADDRESS}`} target='_blank'>
                 <IconImage src="assets/images/etherscan.png" /> 
                 <span className="linkUrlSpan">Contract</span>
               </a>
