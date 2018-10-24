@@ -3,8 +3,29 @@
 ## [0xDonate.io](https://0xdonate.io)
 > An Ethereum donate service for streamers, based on smart contract.
 
-## Demo Video
-[![0xDonate demo vid](https://img.youtube.com/vi/uah9darbB4Y/0.jpg)](https://youtu.be/uah9darbB4Y)
+## Demo
+[<img src="./assets/images/demo.gif">](https://youtu.be/uah9darbB4Y)
+
+Viewers donate through Metamask, and the donate message immediately pops up on top of the stream!
+
+## How it works
+### Donate
+<img src="https://i.imgur.com/aaSLBnM.png" width="600px">
+
+Viewers donate through the link the streamer provides. Fill in the basic information, click on the "donate" button and this triggers Metamask.
+
+Confirming the transaction and BOOM, you successfully completed the donation!
+
+### Notification
+<img src="https://i.imgur.com/DjS9fms.png" width="480px">
+
+Streamer setups browser source for streaming with the Notification link, then the donate messages will pop up on the stream once a transaction is confirmed.
+
+### History
+<img src="https://i.imgur.com/lLnRonj.png" width="480px">
+
+All the donate records are stored on the blockchain. Streamers can easily check their top donors.
+
 
 ## Features
 * 0 fee
