@@ -1,7 +1,14 @@
 # <img src="https://0xdonate.io/assets/images/favicon.png" height="50px"/>0x Donate
 
 ## [0xDonate.io](https://0xdonate.io)
-> An Ethereum donate service for streamers, based on smart contract.
+> An Ethereum donation service for streamers, based on Ethereum smart contract.
+
+## [dEXonation](https://github.com/CryoliteZ/dEXonation)
+A similar decentralized project for streamers, but powered by DEXON.
+
+This services utilized the advantages of DEXON, with low latencty, low fee and high TPS.
+
+[dEXonation](https://cryolite.me/dEXonation/) won 3rd place at 2018 Cobinhood Blockchain Hackathon. 
 
 ## Demo
 [<img src="./assets/images/demo.gif">](https://youtu.be/uah9darbB4Y)
