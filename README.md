@@ -1,7 +1,7 @@
 # <img src="https://0xdonate.io/assets/images/favicon.png" height="50px"/>0x Donate
 
 ## [0xDonate.io](https://0xdonate.io)
-> An Ethereum donation service for streamers, based on Ethereum smart contract.
+A fully decentralized cross-platform donation service for streamers and viewers. Based on Ethereum smart contract, the prototype of the project "dEXonation".
 
 ## [dEXonation](https://github.com/CryoliteZ/dEXonation)
 A similar decentralized project for streamers, but powered by DEXON.
